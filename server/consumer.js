@@ -21,7 +21,7 @@ const consumer = new Kafka.KafkaConsumer({
 
   consumer
   .on('ready', () => {
-    consumer.subscribe(['cardnumbers']);
+    consumer.subscribe(['cpu']);
 
     consumer.consume();
   })

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Gauge } from '@ant-design/plots';
 
 
-export const DemoGauge = ({instance_id}) => {
+export const DemoGauge = ({instance_id, stats}) => {
     const config = {
         type: "meter",
       width: 300,
-      percent: 0.70,
+      percent: stats,
       range: {
         color: '#30BF78',
       },
