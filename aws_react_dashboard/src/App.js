@@ -2,8 +2,28 @@
 import './App.css';
 import {DemoGauge} from './components/Gague';
 import { DemoLiquid } from './components/Liquid';
+import {useEffect, useState} from 'react'
+
+
+import io from 'socket.io-client'
+
+
+const socket = io.connect('http://localhost:888')
+
+
 
 function App() {
+
+const [chartData, setChartData] = useState([])
+
+useEffect(() => {
+
+  socket.on("new_data", (data) => {
+    setChartData(data.message)
+    console.log(data.message)
+  })
+
+},[socket])
 
   // const gague = <DemoGauge />
   // const gague = <DemoLiquid />
