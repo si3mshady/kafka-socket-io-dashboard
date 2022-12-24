@@ -9,6 +9,7 @@ export const DemoGauge = ({instance_id, stats}) => {
       width: 300,
       percent: stats,
       range: {
+        
         color: '#30BF78',
       },
       indicator: {

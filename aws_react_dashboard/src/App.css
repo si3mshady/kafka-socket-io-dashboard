@@ -16,7 +16,7 @@ body {
     justify-content: center;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(4, 40vh);
+    grid-template-columns: repeat(4, 35vh);
     
     margin: 0;
     grid-gap: 1px;
@@ -38,7 +38,7 @@ body {
     justify-content: center;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 40vh);
+    grid-template-columns: repeat(3, 30vh);
     grid-gap: 10vhh;
 }
 
@@ -57,7 +57,7 @@ body {
         justify-content: center;
         margin: auto;
         display: grid;
-        grid-template-columns: repeat(2, 40vh);
+        grid-template-columns: repeat(2, 30vh);
     }
 
     .chart-container > * {

@@ -23,8 +23,11 @@ const [chartData, setChartData] = useState([])
 
 const get_data = async () => {
   const data = await axios.get('http://localhost:888/data')
-  console.log(data)
+
+  console.log(data.data)
+  
   setChartData(data.data)
+ 
 
 }
 
@@ -46,7 +49,7 @@ useEffect(() => {
     <>
     <div className='chart-container'>
 
-   {chartData.map((val,index) =>  ( <DemoGauge instance_id={val.instanceid} stats={val.metric[0]}/>))}
+   {chartData.map((val,index) =>  ( <DemoGauge key={val.instance_id} instance_id={val.instanceid} stats={val.metric}/>))}
 
     </div>
   
