@@ -1,6 +1,6 @@
 import boto3,  datetime, json, time
 
-
+import functools
 from kafka import KafkaProducer
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9093'],value_serializer=lambda x: 
@@ -54,12 +54,9 @@ def get_ec2_metrics(instance_id):
         )
     
 
-    for cpu in response:
-        if cpu['Key'] == 'Average':
-            k = cpu['Value']
-    print(k)
 
-    # return response['MetricDataResults'][0]['Values']
+
+    return response['MetricDataResults'][0]['Values']
     
 
 def publish_metrics():
@@ -74,9 +71,12 @@ def publish_metrics():
     for reservation in r['Reservations']:
         for instance in reservation['Instances']:
             instance_id = instance['InstanceId']
-            res = get_ec2_metrics(instance_id=instance_id)
-            print(res)
-            m = {"instanceid": instance_id, "metric": res}
+            res = get_ec2_metrics(instance_id=instance_id) #res is a list of metrics -> so use reduce to sum them up and get the average
+            single_metric = functools.reduce(lambda a, b: a+b, res) / len(res) * 100
+            print(single_metric)
+           
+            m = {"instanceid": instance_id, "metric": single_metric}
+            
             data.append(m)
     
     print(json.dumps(data))
